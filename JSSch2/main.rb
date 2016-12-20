@@ -1,26 +1,24 @@
 require 'sinatra'
 require 'slim'
+require 'sass'
 require 'sinatra/reloader' if development?
 
+get('/styles.css'){ scss :styles }
+
 get '/' do
-  erb :home
+  slim :home
 end
 
 get '/about' do
   @title = "All About This Website"
-  erb :about
+  slim :about
 end
 
 get '/contact' do 
   @title = "Email To:"
-  erb :contact
+  slim :contact
 end
 
 not_found do
-  erb :not_found
-end
-
-get '/fake-error' do
-  status 500
-  "There's nothing wrong, really :P"
+  slim :not_found
 end
